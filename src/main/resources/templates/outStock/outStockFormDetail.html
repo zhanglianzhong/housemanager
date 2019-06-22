@@ -1,0 +1,65 @@
+<#include "/common/layout_dl.html">
+<@header>
+</@header>
+<@body>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+	  <div class="row">
+		  <div class="col-lg-3">
+			  <label>出库单编号:</label>
+			  <span>${outStockFormId}</span>
+		  </div >
+		  <div class="input-group pull-left col-lg-3 col-lg-offset-1">
+			  <button type="button" class="btn btn-primary btn-flat" onclick="exportTo('出库清单数据');"><i class="fa fa-file-excel-o"></i> 导出</button>
+		  </div>
+	  </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <!-- Your Page Content Here -->
+    <div class="row">
+      <div class="col-xs-12">
+          <div class="table-responsive no-padding">
+            <table class="table table-hover" style="word-break: break-all;word-wrap: break-spaces">
+              <tr>
+                <th  width="20px"><input name="componentInfoState" type="checkbox" class="minimal checkbox-toolbar"></th>
+                <th>物品名称</th>
+                <th>购买批次号</th>
+                <th>封装</th>
+				<th>标称数值</th>
+				<th>型号</th>
+                <th>数量</th>
+				<th width="160px" >操作</th>
+              </tr>
+              <#list itemList as outStockItem>
+              	  <tr>
+	                <td>
+	                   <label>
+	                	<input type="checkbox" class="minimal checkbox-item">
+	                	</label>
+	                </td>
+	                <td>${(outStockItem.itemName)!}</td>
+	                <td>${(outStockItem.purBatchNum)!'--'}</td>
+				    <td>${(outStockItem.capsulation)!}</td>
+					<td>${(outStockItem.standValue)!}</td>
+	                <td align="middle">${(outStockItem.modelNum)!}</td>
+					<td align="middle">${(outStockItem.number)!}</td>
+	                <td>
+	                	 <a class="btn btn-primary btn-xs dialog" href="javascript:;" data-url="/property/componentsInfo/update/${(componentInfo.id)!}" data-title="编辑元器件库存信息" data-width="850" data-height="550">编辑</a>
+	                	<a class="btn btn-danger btn-xs"
+	                	 data-tiggle="ajax"
+	                	 data-submit-url="/property/componentInfo/delete?id=${(componentInfo.id)!}"
+	                	 data-confirm="您确定要删除该条记录吗?">删除</a>
+	                </td>
+	              </tr>
+              </#list>
+            </table>
+        </div>
+	  </div>
+    </div>
+  </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+</@body>
+<@footer>
+</@footer>

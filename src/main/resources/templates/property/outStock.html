@@ -1,0 +1,55 @@
+<#include "/common/layout_dl.html">
+<@header>
+</@header>
+<@body>
+
+<form class="form-horizontal layui-form layui-form-pane" method="post" action="/property/componentsInfo/doOutStock">
+    <div class="form-group">
+        <h2>出库清单编号：</h2>
+        <span>${outStockFormId}</span>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">元器件类型:</label>
+        <span>${componentInfoDetail.compType}</span>
+    </div>
+    <div class="form-group">
+          <label class="col-sm-3 control-label">购买批次号:</label>
+        <span id="purBatchNum">"${componentInfoDetail.purBatchNum}" </span>
+    </div>
+      <div class="form-group">
+          <label class="col-sm-3 control-label">型号:</label>
+          <span id="typeDesc">"${componentInfoDetail.typeDesc}"</span>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-3 control-label">标称数值:</label>
+          <span id= "standValue">${componentInfoDetail.standValue}</span>
+      </div>
+
+      <div class="form-group">
+          <label class="col-sm-3 control-label">封装:</label>
+          <span id="capsulation">${componentInfoDetail.capsulation}</span>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-3 control-label">额定工作电压（V）:</label>
+          <span id="ratedOperaVol">${componentInfoDetail.ratedOperaVol}</span>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-3 control-label">额定工作电流(m A):</label>
+          <span id="ratedOperaCur">${componentInfoDetail.ratedOperaCur}</span>
+      </div>
+
+      <div class="form-group">
+          <label class="col-sm-3 control-label">出库数量:</label>
+          <span id="outStockNum">1</span>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">&nbsp;</label>
+          <div class="col-sm-10">
+              <button type="submit" class="btn btn-success" ><i class="fa fa-save"></i> 添加到出库清单</button>
+          </div>
+
+      </div>
+</form>
+</@body>
+<@footer>
+</@footer>

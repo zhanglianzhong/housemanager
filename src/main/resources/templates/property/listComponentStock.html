@@ -1,0 +1,106 @@
+<#include "/common/layout.html">
+<@header>
+</@header>
+<@body>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <small>资产管理 > 元器件库存信息管理</small>
+    </h1>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <!-- Your Page Content Here -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+	          <div class="box-header">
+				  <div class="input-group">
+	                <@shiro.hasPermission name="addComponentStock">
+		            <a class="btn btn-primary dialog" href="javascript:;" data-url="/property/componentsInfo/add" data-title="元器件入库" data-width="850" data-height="550"><i class="fa fa-plus"></i> 元器件入库</a>
+	                </@shiro.hasPermission>
+	              </div>
+	              <div class="input-group">
+	                <input type="text" name="search" value="${search!}" class="form-control" placeholder="Search">
+	                <div class="input-group-btn">
+	                   <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+	                   <a href="/property/componentsInfo/list/1" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+	                </div>
+	              </div>
+			      <div >
+				    <form method="post" action="/exportExcel/componentsInfo">
+					   <button type="submit" class="btn btn-success " ><i class="fa fa-save"></i>  导 出</button>
+				    </form>
+
+			      </div>
+
+	          </div><!-- /.box-header -->
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover" style="word-break: break-all;word-wrap: break-spaces">
+              <tr>
+                <th  width="20px"><input name="componentInfoState" type="checkbox" class="minimal checkbox-toolbar"></th>
+                <th>元器件类型</th>
+                <th>购买批次号</th>
+                <th>型号</th>
+				<th>封装</th>
+                <th>标称数值</th>
+				<th>允许误差±%</th>
+				<th>额定工作电压 (V)</th>
+				<th>额定工作电流 (mA)</th>
+				<th width="160px" >操作</th>
+              </tr>
+              <#list pageData.getRecords() as componentInfo>
+              	  <tr>
+	                <td>
+	                   <label>
+	                	<input type="checkbox" class="minimal checkbox-item">
+	                	</label>
+	                </td>
+	                <td>${(componentInfo.compType)!}</td>
+	                <td>${(componentInfo.purBatchNum)!'--'}</td>
+				    <td>${(componentInfo.typeDesc)!}</td>
+					<td>${(componentInfo.capsulation)!}</td>
+	                <td align="middle">${(componentInfo.standValue)!}</td>
+					<td align="middle">${(componentInfo.errorValue)!}</td>
+					<td align="middle">${(componentInfo.ratedOperaVol)!}</td>
+					<td align="middle">${(componentInfo.ratedOperaCur)!}</td>
+	                <td>
+						<@shiro.hasPermission name="editUser">
+						<a class="btn btn-primary btn-xs dialog" href="javascript:;"  data-url="/property/componentsInfo/detail/${(componentInfo.id)!}" data-title="查看元器件库存详情" data-width="850" data-height="550">详情</a>
+					    </@shiro.hasPermission>
+	                	<@shiro.hasPermission name="editUser">
+	                	  <a class="btn btn-primary btn-xs dialog" href="javascript:;" data-url="/property/componentsInfo/update/${(componentInfo.id)!}" data-title="编辑元器件库存信息" data-width="850" data-height="550">编辑</a>
+	                	</@shiro.hasPermission>
+				        <@shiro.hasPermission name="editUser">
+				           <a class="btn btn-primary btn-xs dialog" href="javascript:;" data-url="/property/componentsInfo/outStock/${(componentInfo.id)!}" data-title="添加到出库清单" data-width="850" data-height="550">出库</a>
+			            </@shiro.hasPermission>
+	                	<@shiro.hasPermission name="deleteComponent">
+	                	<a class="btn btn-danger btn-xs"
+	                	 data-tiggle="ajax"
+	                	 data-submit-url="/property/componentInfo/delete?id=${(componentInfo.id)!}"
+	                	 data-confirm="您确定要删除该条记录吗?">删除</a>
+	                	 </@shiro.hasPermission>
+	                </td>
+	              </tr>
+              </#list>
+            </table>
+          </div><!-- /.box-body -->
+          <div class="box-footer row">
+            <div class="col-md-6">
+         	  <#include "/common/paginateBar.html" />
+	  		  <@paginate pageData=pageData actionUrl="/property/componentsInfo/list/" urlParas="?search=${search!}&daterange=${daterange!}"  />
+            </div>
+            <div class="col-md-6 pull-left">
+	             <#include "/common/paginate.html" />
+	  			 <@paginate currentPage=pageData.getCurrent() totalPage=pageData.getPages() actionUrl="/property/componentsInfo/list/" urlParas="?search=${search!}&pageSize=${pageSize!}"  />
+            </div>
+          </div>
+        </div><!-- /.box -->
+      </div>
+    </div>
+  </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+</@body>
+<@footer>
+</@footer>

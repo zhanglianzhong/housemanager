@@ -1,0 +1,72 @@
+<#include "/common/layout_dl.html">
+<@header>
+</@header>
+<@body>
+ <form class="form-horizontal layui-form layui-form-pane"  method="post" action="/property/componentsInfo/doEdit">
+  <div class="box-body">
+    <div class="form-group">
+        <!--<span id="id" hidden>${componentInfoDetail.id}</span>-->
+        <input value="${componentInfoDetail.id}" class="disabled "   id="id" name="id">
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">元器件类型:</label>
+        <input value="${componentInfoDetail.compType}" disabled="disabled " id="compType" name="compType">
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">购买批次号:</label>
+        <input value="${componentInfoDetail.purBatchNum}" disabled="disabled " id="purBatchNum" name="purBatchNum">
+    </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">型号:</label>
+          <input value="${componentInfoDetail.typeDesc}" id="typeDesc" name="typeDesc">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">标称数值:</label>
+          <input value="${componentInfoDetail.standValue}" id="standValue" name="standValue" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">允许误差(±%):</label>
+          <input value="${componentInfoDetail.errorValue}" id="errorValue" name="errorValue">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">封装:</label>
+          <input value="${componentInfoDetail.capsulation}" id="capsulation" name="capsulation" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">额定工作电压(V):</label>
+          <input value="${componentInfoDetail.ratedOperaVol}" id="ratedOperaVol" name="ratedOperaVol">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">额定工作电流(mA):</label>
+          <input value="${componentInfoDetail.ratedOperaCur}" id="ratedOperaCur" name="ratedOperaCur">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">最高工作电压(V):</label>
+          <input value="${componentInfoDetail.maxOperaVol}" id="maxOperaVol" name="maxOperaVol">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">最高工作电流(mA):</label>
+          <input value="${componentInfoDetail.maxOperaCur}" id="maxOperaCur" name="maxOperaCur">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">品质因数:</label>
+          <input value="${componentInfoDetail.qualityFactor}" id="qualityFactor" name="qualityFactor">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">功率因数</label>
+          <input value="${componentInfoDetail.powerFactor}" id="powerFactor" name="powerFactor">
+      </div>
+     <div class="form-group">
+      	<label  class="col-sm-2 control-label"></label>
+       	<div class="col-sm-10">
+       		 <button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>  提 交</button>
+       	</div>
+     </div>
+  </div><!-- /.box-body -->
+</form>
+<script type="text/javascript">
+    document.getElementById("id").style.display="none";
+</script>
+</@body>
+<@footer>
+</@footer>

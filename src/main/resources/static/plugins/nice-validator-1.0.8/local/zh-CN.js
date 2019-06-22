@@ -30,7 +30,7 @@
             ,mobile: [/^1[3-9]\d{9}$/, "请填写有效的手机号"]
             ,zipcode: [/^\d{6}$/, "请检查邮政编码格式"]
             ,chinese: [/^[\u0391-\uFFE5]+$/, "请填写中文字符"]
-            ,username: [/^\w{3,12}$/, "请填写3-12位数字、字母、下划线"]
+            ,username: [/^\w{3,20}$/, "请填写3-20位数字、字母、下划线"]
             ,password: [/^[\S]{6,16}$/, "请填写6-16位字符，不能包含空格"]
             ,accept: function (element, params){
                 if (!params) return true;

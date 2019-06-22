@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ComponentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.uestc.entity.ComponentInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="compType" jdbcType="VARCHAR" property="comptype" />
+    <result column="purBatchNum" jdbcType="CHAR" property="purbatchnum" />
+    <result column="typeDesc" jdbcType="VARCHAR" property="typedesc" />
+    <result column="standValue" jdbcType="DECIMAL" property="standvalue" />
+    <result column="errorValue" jdbcType="DECIMAL" property="errorvalue" />
+    <result column="capsulation" jdbcType="VARCHAR" property="capsulation" />
+    <result column="ratedOperaVol" jdbcType="DECIMAL" property="ratedoperavol" />
+    <result column="ratedOperaCur" jdbcType="DECIMAL" property="ratedoperacur" />
+    <result column="maxOperaVol" jdbcType="DECIMAL" property="maxoperavol" />
+    <result column="maxOperaCur" jdbcType="DECIMAL" property="maxoperacur" />
+    <result column="qualityFactor" jdbcType="DECIMAL" property="qualityfactor" />
+    <result column="powerFactor" jdbcType="DECIMAL" property="powerfactor" />
+    <result column="opeImpedance" jdbcType="DECIMAL" property="opeimpedance" />
+    <result column="qualityInStock" jdbcType="INTEGER" property="qualityinstock" />
+    <result column="cabinetNum" jdbcType="VARCHAR" property="cabinetnum" />
+    <result column="boxNum" jdbcType="VARCHAR" property="boxnum" />
+    <result column="purChanel" jdbcType="VARCHAR" property="purchanel" />
+    <result column="purName" jdbcType="VARCHAR" property="purname" />
+    <result column="purTelphone" jdbcType="VARCHAR" property="purtelphone" />
+    <result column="unitPrice" jdbcType="DECIMAL" property="unitprice" />
+    <result column="purDate" jdbcType="INTEGER" property="purdate" />
+    <result column="supplyName" jdbcType="VARCHAR" property="supplyname" />
+    <result column="supplyTelphone" jdbcType="VARCHAR" property="supplytelphone" />
+    <result column="supplyAddress" jdbcType="VARCHAR" property="supplyaddress" />
+    <result column="regDateTime" jdbcType="CHAR" property="regdatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, compType, purBatchNum, typeDesc, standValue, errorValue, capsulation, ratedOperaVol, 
+    ratedOperaCur, maxOperaVol, maxOperaCur, qualityFactor, powerFactor, opeImpedance, 
+    qualityInStock, cabinetNum, boxNum, purChanel, purName, purTelphone, unitPrice, purDate, 
+    supplyName, supplyTelphone, supplyAddress, regDateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from component_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from component_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.uestc.entity.ComponentInfo">
+    insert into component_info (id, compType, purBatchNum, 
+      typeDesc, standValue, errorValue, 
+      capsulation, ratedOperaVol, ratedOperaCur, 
+      maxOperaVol, maxOperaCur, qualityFactor, 
+      powerFactor, opeImpedance, qualityInStock, 
+      cabinetNum, boxNum, purChanel, 
+      purName, purTelphone, unitPrice, 
+      purDate, supplyName, supplyTelphone, 
+      supplyAddress, regDateTime)
+    values (#{id,jdbcType=VARCHAR}, #{comptype,jdbcType=VARCHAR}, #{purbatchnum,jdbcType=CHAR}, 
+      #{typedesc,jdbcType=VARCHAR}, #{standvalue,jdbcType=DECIMAL}, #{errorvalue,jdbcType=DECIMAL}, 
+      #{capsulation,jdbcType=VARCHAR}, #{ratedoperavol,jdbcType=DECIMAL}, #{ratedoperacur,jdbcType=DECIMAL}, 
+      #{maxoperavol,jdbcType=DECIMAL}, #{maxoperacur,jdbcType=DECIMAL}, #{qualityfactor,jdbcType=DECIMAL}, 
+      #{powerfactor,jdbcType=DECIMAL}, #{opeimpedance,jdbcType=DECIMAL}, #{qualityinstock,jdbcType=INTEGER}, 
+      #{cabinetnum,jdbcType=VARCHAR}, #{boxnum,jdbcType=VARCHAR}, #{purchanel,jdbcType=VARCHAR}, 
+      #{purname,jdbcType=VARCHAR}, #{purtelphone,jdbcType=VARCHAR}, #{unitprice,jdbcType=DECIMAL}, 
+      #{purdate,jdbcType=INTEGER}, #{supplyname,jdbcType=VARCHAR}, #{supplytelphone,jdbcType=VARCHAR}, 
+      #{supplyaddress,jdbcType=VARCHAR}, #{regdatetime,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.uestc.entity.ComponentInfo">
+    insert into component_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="comptype != null">
+        compType,
+      </if>
+      <if test="purbatchnum != null">
+        purBatchNum,
+      </if>
+      <if test="typedesc != null">
+        typeDesc,
+      </if>
+      <if test="standvalue != null">
+        standValue,
+      </if>
+      <if test="errorvalue != null">
+        errorValue,
+      </if>
+      <if test="capsulation != null">
+        capsulation,
+      </if>
+      <if test="ratedoperavol != null">
+        ratedOperaVol,
+      </if>
+      <if test="ratedoperacur != null">
+        ratedOperaCur,
+      </if>
+      <if test="maxoperavol != null">
+        maxOperaVol,
+      </if>
+      <if test="maxoperacur != null">
+        maxOperaCur,
+      </if>
+      <if test="qualityfactor != null">
+        qualityFactor,
+      </if>
+      <if test="powerfactor != null">
+        powerFactor,
+      </if>
+      <if test="opeimpedance != null">
+        opeImpedance,
+      </if>
+      <if test="qualityinstock != null">
+        qualityInStock,
+      </if>
+      <if test="cabinetnum != null">
+        cabinetNum,
+      </if>
+      <if test="boxnum != null">
+        boxNum,
+      </if>
+      <if test="purchanel != null">
+        purChanel,
+      </if>
+      <if test="purname != null">
+        purName,
+      </if>
+      <if test="purtelphone != null">
+        purTelphone,
+      </if>
+      <if test="unitprice != null">
+        unitPrice,
+      </if>
+      <if test="purdate != null">
+        purDate,
+      </if>
+      <if test="supplyname != null">
+        supplyName,
+      </if>
+      <if test="supplytelphone != null">
+        supplyTelphone,
+      </if>
+      <if test="supplyaddress != null">
+        supplyAddress,
+      </if>
+      <if test="regdatetime != null">
+        regDateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="comptype != null">
+        #{comptype,jdbcType=VARCHAR},
+      </if>
+      <if test="purbatchnum != null">
+        #{purbatchnum,jdbcType=CHAR},
+      </if>
+      <if test="typedesc != null">
+        #{typedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="standvalue != null">
+        #{standvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="errorvalue != null">
+        #{errorvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="capsulation != null">
+        #{capsulation,jdbcType=VARCHAR},
+      </if>
+      <if test="ratedoperavol != null">
+        #{ratedoperavol,jdbcType=DECIMAL},
+      </if>
+      <if test="ratedoperacur != null">
+        #{ratedoperacur,jdbcType=DECIMAL},
+      </if>
+      <if test="maxoperavol != null">
+        #{maxoperavol,jdbcType=DECIMAL},
+      </if>
+      <if test="maxoperacur != null">
+        #{maxoperacur,jdbcType=DECIMAL},
+      </if>
+      <if test="qualityfactor != null">
+        #{qualityfactor,jdbcType=DECIMAL},
+      </if>
+      <if test="powerfactor != null">
+        #{powerfactor,jdbcType=DECIMAL},
+      </if>
+      <if test="opeimpedance != null">
+        #{opeimpedance,jdbcType=DECIMAL},
+      </if>
+      <if test="qualityinstock != null">
+        #{qualityinstock,jdbcType=INTEGER},
+      </if>
+      <if test="cabinetnum != null">
+        #{cabinetnum,jdbcType=VARCHAR},
+      </if>
+      <if test="boxnum != null">
+        #{boxnum,jdbcType=VARCHAR},
+      </if>
+      <if test="purchanel != null">
+        #{purchanel,jdbcType=VARCHAR},
+      </if>
+      <if test="purname != null">
+        #{purname,jdbcType=VARCHAR},
+      </if>
+      <if test="purtelphone != null">
+        #{purtelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="unitprice != null">
+        #{unitprice,jdbcType=DECIMAL},
+      </if>
+      <if test="purdate != null">
+        #{purdate,jdbcType=INTEGER},
+      </if>
+      <if test="supplyname != null">
+        #{supplyname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplytelphone != null">
+        #{supplytelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyaddress != null">
+        #{supplyaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="regdatetime != null">
+        #{regdatetime,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.uestc.entity.ComponentInfo">
+    update component_info
+    <set>
+      <if test="comptype != null">
+        compType = #{comptype,jdbcType=VARCHAR},
+      </if>
+      <if test="purbatchnum != null">
+        purBatchNum = #{purbatchnum,jdbcType=CHAR},
+      </if>
+      <if test="typedesc != null">
+        typeDesc = #{typedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="standvalue != null">
+        standValue = #{standvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="errorvalue != null">
+        errorValue = #{errorvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="capsulation != null">
+        capsulation = #{capsulation,jdbcType=VARCHAR},
+      </if>
+      <if test="ratedoperavol != null">
+        ratedOperaVol = #{ratedoperavol,jdbcType=DECIMAL},
+      </if>
+      <if test="ratedoperacur != null">
+        ratedOperaCur = #{ratedoperacur,jdbcType=DECIMAL},
+      </if>
+      <if test="maxoperavol != null">
+        maxOperaVol = #{maxoperavol,jdbcType=DECIMAL},
+      </if>
+      <if test="maxoperacur != null">
+        maxOperaCur = #{maxoperacur,jdbcType=DECIMAL},
+      </if>
+      <if test="qualityfactor != null">
+        qualityFactor = #{qualityfactor,jdbcType=DECIMAL},
+      </if>
+      <if test="powerfactor != null">
+        powerFactor = #{powerfactor,jdbcType=DECIMAL},
+      </if>
+      <if test="opeimpedance != null">
+        opeImpedance = #{opeimpedance,jdbcType=DECIMAL},
+      </if>
+      <if test="qualityinstock != null">
+        qualityInStock = #{qualityinstock,jdbcType=INTEGER},
+      </if>
+      <if test="cabinetnum != null">
+        cabinetNum = #{cabinetnum,jdbcType=VARCHAR},
+      </if>
+      <if test="boxnum != null">
+        boxNum = #{boxnum,jdbcType=VARCHAR},
+      </if>
+      <if test="purchanel != null">
+        purChanel = #{purchanel,jdbcType=VARCHAR},
+      </if>
+      <if test="purname != null">
+        purName = #{purname,jdbcType=VARCHAR},
+      </if>
+      <if test="purtelphone != null">
+        purTelphone = #{purtelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="unitprice != null">
+        unitPrice = #{unitprice,jdbcType=DECIMAL},
+      </if>
+      <if test="purdate != null">
+        purDate = #{purdate,jdbcType=INTEGER},
+      </if>
+      <if test="supplyname != null">
+        supplyName = #{supplyname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplytelphone != null">
+        supplyTelphone = #{supplytelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyaddress != null">
+        supplyAddress = #{supplyaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="regdatetime != null">
+        regDateTime = #{regdatetime,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.uestc.entity.ComponentInfo">
+    update component_info
+    set compType = #{comptype,jdbcType=VARCHAR},
+      purBatchNum = #{purbatchnum,jdbcType=CHAR},
+      typeDesc = #{typedesc,jdbcType=VARCHAR},
+      standValue = #{standvalue,jdbcType=DECIMAL},
+      errorValue = #{errorvalue,jdbcType=DECIMAL},
+      capsulation = #{capsulation,jdbcType=VARCHAR},
+      ratedOperaVol = #{ratedoperavol,jdbcType=DECIMAL},
+      ratedOperaCur = #{ratedoperacur,jdbcType=DECIMAL},
+      maxOperaVol = #{maxoperavol,jdbcType=DECIMAL},
+      maxOperaCur = #{maxoperacur,jdbcType=DECIMAL},
+      qualityFactor = #{qualityfactor,jdbcType=DECIMAL},
+      powerFactor = #{powerfactor,jdbcType=DECIMAL},
+      opeImpedance = #{opeimpedance,jdbcType=DECIMAL},
+      qualityInStock = #{qualityinstock,jdbcType=INTEGER},
+      cabinetNum = #{cabinetnum,jdbcType=VARCHAR},
+      boxNum = #{boxnum,jdbcType=VARCHAR},
+      purChanel = #{purchanel,jdbcType=VARCHAR},
+      purName = #{purname,jdbcType=VARCHAR},
+      purTelphone = #{purtelphone,jdbcType=VARCHAR},
+      unitPrice = #{unitprice,jdbcType=DECIMAL},
+      purDate = #{purdate,jdbcType=INTEGER},
+      supplyName = #{supplyname,jdbcType=VARCHAR},
+      supplyTelphone = #{supplytelphone,jdbcType=VARCHAR},
+      supplyAddress = #{supplyaddress,jdbcType=VARCHAR},
+      regDateTime = #{regdatetime,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
