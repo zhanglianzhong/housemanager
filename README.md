@@ -1,7 +1,7 @@
-# springboot-adminlte-admin
+# housemanager
 
-springboot-adminlte-admin是一个基于AdminLTE+freemarker+Shiro的企业级应用管理平台，旨在解决高校教研室管理过程中遇到的热点问题。
-该版本提供的功能包括
+housemanager是一个基于AdminLTE+freemarker+Shiro的企业级应用管理平台，旨在解决房东在房屋出租过程中遇到的难点问题，
+是一款面向房屋出租业务的管理系统，具备操作简单，功能实用的特点，适合众多的房屋出租管理者日常收费管理使用。
 -用户的登录
 
 -系统管理
@@ -11,14 +11,11 @@ springboot-adminlte-admin是一个基于AdminLTE+freemarker+Shiro的企业级应
 ---日志管理
 ---系统设置
 
--库存管理
----元器件库存信息查询
----元器件入库出库
----器材管理
+-房屋出租管理
+---房间管理
+---房客管理
+---日常收款
 
--人力资源管理
----每日打卡
----通讯录
 
 -个人信息维护
 --个人信息
@@ -38,5 +35,3 @@ springboot-adminlte-admin是一个基于AdminLTE+freemarker+Shiro的企业级应
 - 数据库连接池：Alibaba Druid
 - 权限控制：Shiro 
 
-待开发功能点
-1、菜单管理，新增二级菜单资源编辑功能

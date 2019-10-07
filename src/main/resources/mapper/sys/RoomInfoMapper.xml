@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.mapper.RoomInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.uestc.entity.RoomInfo">
+        <id column="roomName" property="roomName" />
+        <result column="roomType" property="roomType" />
+        <result column="application" property="application" />
+        <result column="size" property="size" />
+        <result column="orientation" property="orientation" />
+        <result column="state" property="state" />
+        <result column="appendix" property="appendix" />
+        <result column="houseAppliances" property="houseAppliances" />
+        <result column="rental" property="rental" />
+        <result column="rentPatten" property="rentPatten" />
+    </resultMap>
+
+</mapper>

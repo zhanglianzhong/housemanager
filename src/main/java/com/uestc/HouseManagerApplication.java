@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @MapperScan("com.uestc.mapper*")
-public class SpringbootAdminlteAdminApplication {
+public class HouseManagerApplication {
 
 	@Bean
 	public ServletListenerRegistrationBean<SpringUtil> servletListenerRegistrationBean(){
@@ -19,6 +19,6 @@ public class SpringbootAdminlteAdminApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootAdminlteAdminApplication.class, args);
+		SpringApplication.run(HouseManagerApplication.class, args);
 	}
 }

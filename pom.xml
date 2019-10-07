@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.uestc</groupId>
-	<artifactId>springboot-adminlte-admin</artifactId>
+	<artifactId>housemanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>springboot-adminlte-admin</name>
-	<description>Demo project for Spring Boot</description>
+	<name>housemanager</name>
+	<description>Spring Boot Project For Housemanager</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

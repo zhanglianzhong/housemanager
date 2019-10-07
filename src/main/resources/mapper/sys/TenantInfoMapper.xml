@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.mapper.TenantInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.uestc.entity.TenantInfo">
+        <id column="tenantId" property="tenantId" />
+        <result column="tenantName" property="tenantName" />
+        <result column="roomName" property="roomName" />
+        <result column="tenantDate" property="tenantDate" />
+        <result column="contractDuration" property="contractDuration" />
+        <result column="identityCardNum" property="identityCardNum" />
+        <result column="telephone" property="telephone" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="note" property="note" />
+    </resultMap>
+
+</mapper>
