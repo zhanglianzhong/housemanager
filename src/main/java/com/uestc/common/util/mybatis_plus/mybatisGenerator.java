@@ -29,7 +29,8 @@ public class mybatisGenerator {
     /**
      * 输出文件的路径
      */
-    private static final String OUT_PATH = "/Users/zhanglianzhong/JavaWorkspace/housemanager/src/main/java";
+  //  private static final String OUT_PATH = "/Users/zhanglianzhong/JavaWorkspace/housemanager/src/main/java";
+      private static final String OUT_PATH = "/Users/zhanglianzhong/JavaWorkspace";
     /**
      * 代码生成者
      */
@@ -92,7 +93,7 @@ public class mybatisGenerator {
         //strategy.setTablePrefix(new String[] { "user_" });// 此处可以修改为您的表前缀
         //strategy.setNaming(NamingStrategy.nochange);// 表名生成策略
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略 驼峰命名
-        strategy.setInclude(new String[] { "room_info" ,"tenant_info"}); // 需要生成的表
+        strategy.setInclude(new String[] { "room_info"}); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");

@@ -16,4 +16,15 @@
         <result column="rentPatten" property="rentPatten" />
     </resultMap>
 
+    <select id="selectRoomInfoList" resultType="java.util.HashMap">
+
+        SELECT * FROM `room_info` r WHERE 1=1
+        <if test="search != null">
+            AND r.roomName LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
+        </if>
+        ORDER BY r.`roomName` DESC
+    </select>
+
+
+
 </mapper>

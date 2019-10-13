@@ -16,4 +16,14 @@
         <result column="note" property="note" />
     </resultMap>
 
+    <select id="selectTenantList" resultType="java.util.HashMap">
+
+        SELECT * FROM `tenant_info` t WHERE 1=1
+        <if test="search != null">
+            AND t.tenantName LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
+        </if>
+        ORDER BY t.`tenantDate` DESC
+    </select>
+
+
 </mapper>

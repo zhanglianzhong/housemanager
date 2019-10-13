@@ -1,0 +1,78 @@
+<#include "/common/layout_dl.html">
+<@header>
+</@header>
+<@body>
+ <form class="form-horizontal layui-form layui-form-pane"  method="post" action="/hm/roomManager/doEdit">
+  <div class="box-body">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">房间号:</label>
+        <input value="${roomInfo.roomName}"   id="roomName" name="roomName" readonly="readonly">
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">房型:</label>
+        <input value="${roomInfo.roomType}"  id="roomType" name="roomType">
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">用途:</label>
+        <input value="${roomInfo.application}"  id="application" name="application">
+    </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label"> 房间面积(平方米):</label>
+          <input value="${roomInfo.size}" id="size" name="size">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">朝向:</label>
+          <input value="${roomInfo.orientation}" id="orientation" name="orientation" >
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">出租状态</label>
+          <div class="col-sm-10">
+              <label>
+                  <input name="state" type="radio" class="minimal" ${(roomInfo.state == 1)?string('checked','')} value="1" lay-ignore> 已出租
+              </label>
+              <label>
+                  <input name="state" type="radio" class="minimal" ${(roomInfo.state == 0)?string('checked','')}  value="0" lay-ignore> 未出租
+              </label>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">配套设施:</label>
+          <div class="col-sm-8">
+              <textarea class="form-control" name="appendix" rows="1" placeholder="请输入描述，最多30个字符 ..." >${(roomInfo.appendix)!}</textarea>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">家用电器:</label>
+          <div class="col-sm-8">
+              <textarea class="form-control" name="houseAppliances" rows="1" placeholder="请输入描述，最多30个字符 ..." >${(roomInfo.houseAppliances)!}</textarea>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">租金:</label>
+          <input value="${roomInfo.rental}" id="rental" name="rental">
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">押付模式</label>
+          <div class="col-sm-10">
+              <label>
+                  <input name="rentPatten" type="radio" class="minimal" ${(roomInfo.rentPatten == 1)?string('checked','')} value="1" lay-ignore> 押一付一
+              </label>
+              <label>
+                  <input name="rentPatten" type="radio" class="minimal" ${(roomInfo.rentPatten == 2)?string('checked','')}  value="0" lay-ignore> 押一付二
+              </label>
+          </div>
+      </div>
+     <div class="form-group">
+      	<label  class="col-sm-2 control-label"></label>
+       	<div class="col-sm-10">
+       		 <button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>  提 交</button>
+       	</div>
+     </div>
+  </div><!-- /.box-body -->
+</form>
+<script type="text/javascript">
+    document.getElementById("id").style.display="none";
+</script>
+</@body>
+<@footer>
+</@footer>
