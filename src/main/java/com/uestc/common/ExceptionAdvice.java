@@ -91,7 +91,8 @@ public class ExceptionAdvice {
         model.addAttribute("error","空指针异常,"+e.getMessage());
         return "error/500";
     }
-    
+
+
     /**
      * 500
      * @param e

@@ -1,13 +1,9 @@
 package com.uestc.controller.system;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.uestc.common.controller.SuperController;
 import com.uestc.common.util.CommonUtil;
 import com.uestc.common.util.ShiroUtil;
-import com.uestc.entity.OutStockForm;
 import com.uestc.entity.SysUser;
-import com.uestc.service.IOutStockFormService;
 import com.uestc.service.ISysUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -17,15 +13,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 /**
  * 用户中心控制器
- * @author Gaojun.Zhou
- * @date 2016年12月16日 下午4:24:04
+ * @author Zhanglianzhong
+ * @date 2019年11月03日
  */
 @Controller
 @RequestMapping("/system/me")

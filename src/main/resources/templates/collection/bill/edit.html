@@ -1,0 +1,84 @@
+<#include "/common/layout_dl.html">
+<@header>
+</@header>
+<@body>
+ <form class="form-horizontal layui-form layui-form-pane"  method="post" action="/collection/bill/doEdit">
+  <div class="box-body">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">房间编号:</label>
+        <input value="${billInfo.roomName}"   id="roomName" name="roomName" readonly="readonly">
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">所属年月:</label>
+        <input value="${billInfo.month}"  id="month" name="month">
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">租客姓名:</label>
+        <input value="${billInfo.tenantName}"  id="tenantName" name="tenantName">
+    </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label"> 上月水量(吨):</label>
+          <input value="${billInfo.lastMonthWater}" id="lastMonthWater" name="lastMonthWater">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">本月水量(吨):</label>
+          <input value="${billInfo.curMonthWater}" id="curMonthWater" name="curMonthWater" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">实用水量(吨):</label>
+          <input value="${billInfo.realUseWater}" id="realUseWater" name="realUseWater" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">上月电量(度):</label>
+          <input value="${billInfo.lastMonthEle}" id="lastMonthEle" name="lastMonthEle" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">本月电量(度):</label>
+          <input value="${billInfo.realUseEle}" id="realUseEle" name="realUseEle" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">月租:</label>
+          <input value="${billInfo.rental}" id="rental" name="rental" >
+      </div>
+
+      <div class="form-group">
+          <label class="col-sm-2 control-label">电梯费:</label>
+          <input value="${billInfo.liftFee}" id="liftFee" name="liftFee" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">公共费:</label>
+          <input value="${billInfo.publicFee}" id="publicFee" name="publicFee" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">卫生费:</label>
+          <input value="${billInfo.sanitaryFee}" id="sanitaryFee" name="sanitaryFee" >
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">房租总费用:</label>
+          <input value="${billInfo.totalFees}" id="totalFees" name="totalFees" >
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">缴纳标志</label>
+          <div class="col-sm-10">
+              <label>
+                  <input name="state" type="radio" class="minimal" ${(billInfo.payFlag=="Y")?string('checked','')} value="Y" lay-ignore> 已缴纳
+              </label>
+              <label>
+                  <input name="state" type="radio" class="minimal" ${(billInfo.payFlag=="N")?string('checked','')}  value="N" lay-ignore> 未缴纳
+              </label>
+          </div>
+      </div>
+     <div class="form-group">
+      	<label  class="col-sm-2 control-label"></label>
+       	<div class="col-sm-10">
+       		 <button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>  提 交</button>
+       	</div>
+     </div>
+  </div><!-- /.box-body -->
+</form>
+<script type="text/javascript">
+    document.getElementById("id").style.display="none";
+</script>
+</@body>
+<@footer>
+</@footer>

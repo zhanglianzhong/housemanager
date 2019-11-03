@@ -2,74 +2,146 @@
 <@header>
 </@header>
 <@body>
- <form class="form-horizontal layui-form layui-form-pane"  method="post" action="/hm/roomManager/doAdd">
+ <form  id="roomAddForm" class="form-horizontal layui-form layui-form-pane" data-validator-option="{theme:'bootstrap', timely:3}">
   <div class="box-body">
     <div class="form-group">
-        <label class="col-sm-2 control-label">房间号:</label>
-        <input value="${roomInfo.roomName}"   id="roomName" name="roomName" >
+        <label class="col-sm-2 control-label">房间编号:</label>
+        <input  id="roomName" name="roomName" placeholder="如2栋505房间,为02505" data-rule="房间编号:required;length(5)">
     </div>
     <div class="form-group">
           <label class="col-sm-2 control-label">房型:</label>
-        <input value="${roomInfo.roomType}"  id="roomType" name="roomType">
+          <div class="col-sm-3">
+             <select  class="form-control" id="roomType" name="roomType" data-rule="required">
+               <option value="10">单间</option>
+               <option value="11">一室一厅</option>
+               <option value="21">两室一厅</option>
+               <option value="31">三室一厅</option>
+             </select>
+          </div>
     </div>
     <div class="form-group">
           <label class="col-sm-2 control-label">用途:</label>
-        <input value="${roomInfo.application}"  id="application" name="application">
+        <input  id="application" name="application" data-rule="用途:required">
     </div>
       <div class="form-group">
           <label class="col-sm-2 control-label"> 房间面积(平方米):</label>
-          <input value="${roomInfo.size}" id="size" name="size">
+          <input id="size" name="size" data-rule="房间面积:required;integer(+);range(1-999,true)">
       </div>
       <div class="form-group">
           <label class="col-sm-2 control-label">朝向:</label>
-          <input value="${roomInfo.orientation}" id="orientation" name="orientation" >
+          <input  id="orientation" name="orientation" data-rule="朝向:required;length(1~2)">
       </div>
       <div class="form-group">
           <label  class="col-sm-2 control-label">出租状态</label>
           <div class="col-sm-10">
               <label>
-                  <input name="state" type="radio" class="minimal" ${(roomInfo.state == 1)?string('checked','')} value="1" lay-ignore> 已出租
+                  <input name="state" type="radio" class="minimal" value="1" data-rule="checked" lay-ignore> 已出租
               </label>
               <label>
-                  <input name="state" type="radio" class="minimal" ${(roomInfo.state == 0)?string('checked','')}  value="0" lay-ignore> 未出租
+                  <input name="state" type="radio" class="minimal"  value="0" lay-ignore> 未出租
               </label>
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-2 control-label">配套设施:</label>
           <div class="col-sm-8">
-              <textarea class="form-control" name="appendix" rows="1" placeholder="请输入描述，最多30个字符 ..." >${(roomInfo.appendix)!}</textarea>
+              <textarea class="form-control" name="appendix" rows="1" placeholder="请输入描述，最多30个字符 ..." data-rule="length(0~30)" ></textarea>
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-2 control-label">家用电器:</label>
           <div class="col-sm-8">
-              <textarea class="form-control" name="houseAppliances" rows="1" placeholder="请输入描述，最多30个字符 ..." >${(roomInfo.houseAppliances)!}</textarea>
+              <textarea class="form-control" name="houseAppliances" rows="1" placeholder="请输入描述，最多30个字符 ..." data-rule="length(0~30)"></textarea>
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-2 control-label">租金:</label>
-          <input value="${roomInfo.rental}" id="rental" name="rental">
+          <input  id="rental" name="rental" data-rule="租金:required">
       </div>
       <div class="form-group">
           <label  class="col-sm-2 control-label">押付模式</label>
           <div class="col-sm-10">
               <label>
-                  <input name="rentPatten" type="radio" class="minimal" ${(roomInfo.rentPatten == 1)?string('checked','')} value="1" lay-ignore> 押一付一
+                  <input name="rentPatten" type="radio" class="minimal"  value="1" lay-ignore > 押一付一
               </label>
               <label>
-                  <input name="rentPatten" type="radio" class="minimal" ${(roomInfo.rentPatten == 2)?string('checked','')}  value="0" lay-ignore> 押一付二
+                  <input name="rentPatten" type="radio" class="minimal"   value="2" lay-ignore> 押二付一
+              </label>
+              <label>
+                  <input name="rentPatten" type="radio" class="minimal"   value="3" data-rule="checked"  lay-ignore> 自定义
+              </label>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">押金:</label>
+          <input  id="deposit" name="deposit" data-rule="押金:required">
+      </div>
+      <div class="form-group">
+          <label class="col-sm-2 control-label">网费:</label>
+          <input id="netPrice" name="netPrice" data-rule="网费:required">
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">电梯房</label>
+          <div class="col-sm-10">
+              <label>
+                  <input name="hasLift" type="radio" class="minimal"  value="1" data-rule="checked" lay-ignore > 是
+              </label>
+              <label>
+                  <input name="hasLift" type="radio" class="minimal"  value="0" lay-ignore> 否
               </label>
           </div>
       </div>
      <div class="form-group">
       	<label  class="col-sm-2 control-label"></label>
        	<div class="col-sm-10">
-       		 <button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>  提 交</button>
+       		 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>  提 交</button>
        	</div>
      </div>
   </div><!-- /.box-body -->
 </form>
+
 </@body>
 <@footer>
+<script type="text/javascript">
+
+    $("input:radio[name='rentPatten']").on('ifChecked', function(event){
+        var opt=$("input:radio[name='rentPatten']:checked").val();
+        var rentalInput = document.getElementById("rental");
+        var rental = rentalInput.value;
+        var deposit;
+        if(1 ==opt){
+            //押一付一
+            deposit = 1*rental;
+            document.getElementById('deposit').value =deposit;
+           // document.getElementById('deposit').disabled=true; disable后台将无法接收到值
+             document.getElementById('deposit').setAttribute("readonly",true);
+
+        }else if(2==opt){
+            //押二付一
+            deposit = 2*rental;
+            document.getElementById('deposit').value =deposit;
+            document.getElementById('deposit').setAttribute("readonly",true);
+        }else{
+            //自定义
+            document.getElementById('deposit').removeAttribute("readonly")
+        }
+    });
+
+    //接收表单验证通过的事件
+    $('#roomAddForm').bind('valid.form', function(){
+        $.ajax({
+            url: '/hm/roomManager/doAdd',
+            type: 'POST',
+            dataType:'json',
+            data: $(this).serialize(),
+            success: function(result){
+                layer.msg(result.msg, {time: 2000},function(){
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index);
+                });
+            }
+        });
+    });
+</script>
+
 </@footer>

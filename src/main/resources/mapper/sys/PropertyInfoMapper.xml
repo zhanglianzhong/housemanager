@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.mapper.PropertyInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.uestc.entity.PropertyInfo">
+        <id column="roomName" property="roomName" />
+        <result column="month" property="month" />
+        <result column="waterNum" property="waterNum" />
+        <result column="electricNum" property="electricNum" />
+        <result column="recordDateTime" property="recordDateTime" />
+        <result column="version" property="version" />
+    </resultMap>
+
+    <select id="selectPropertyInfoList" resultType="java.util.HashMap">
+
+        SELECT * FROM `property_info` p WHERE 1=1
+        <if test="search != null">
+            AND p.roomName LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
+        </if>
+        ORDER BY p.`roomName` DESC
+    </select>
+</mapper>

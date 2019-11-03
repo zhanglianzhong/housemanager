@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Zhang Lianzhong
- * @since 2019-10-07
+ * @since 2019-10-13
  */
 @TableName("room_info")
 public class RoomInfo extends Model<RoomInfo> {
@@ -24,7 +24,7 @@ public class RoomInfo extends Model<RoomInfo> {
     private String roomName;
 
     /**
-     * 房型
+     * 房型 10 - 单间,11 - 一室一厅,21 - 两室一厅,31 - 三室一厅
      */
     private String roomType;
 
@@ -64,9 +64,24 @@ public class RoomInfo extends Model<RoomInfo> {
     private BigDecimal rental;
 
     /**
-     * 押付模式 1 - 押一付一，2 - 押二付一
+     * 押付模式 1 - 押一付一，2 - 押二付一,3 - 自定义
      */
     private Integer rentPatten;
+
+    /**
+     * 押金
+     */
+    private BigDecimal deposit;
+
+    /**
+     * 网费
+     */
+    private BigDecimal netPrice;
+
+    /**
+     * 是否电梯房 1-是,0-否
+     */
+    private Integer hasLift;
 
     public String getRoomName() {
         return roomName;
@@ -138,6 +153,27 @@ public class RoomInfo extends Model<RoomInfo> {
     public void setRentPatten(Integer rentPatten) {
         this.rentPatten = rentPatten;
     }
+    public BigDecimal getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(BigDecimal deposit) {
+        this.deposit = deposit;
+    }
+    public BigDecimal getNetPrice() {
+        return netPrice;
+    }
+
+    public void setNetPrice(BigDecimal netPrice) {
+        this.netPrice = netPrice;
+    }
+    public Integer getHasLift() {
+        return hasLift;
+    }
+
+    public void setHasLift(Integer hasLift) {
+        this.hasLift = hasLift;
+    }
 
     @Override
     protected Serializable pkVal() {
@@ -157,6 +193,9 @@ public class RoomInfo extends Model<RoomInfo> {
         ", houseAppliances=" + houseAppliances +
         ", rental=" + rental +
         ", rentPatten=" + rentPatten +
+        ", deposit=" + deposit +
+        ", netPrice=" + netPrice +
+        ", hasLift=" + hasLift +
         "}";
     }
 }

@@ -15,25 +15,27 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
-           <form action="/hm/roomManager/list/1" method="post" class="form-inline">
-	          <div class="box-header">
-	            <div class="input-group">
-	            <@shiro.hasPermission name="addRoomInfo">
-		            <a class="btn btn-primary dialog" href="javascript:;" data-url="/hm/roomManager/add" data-title="添加房间信息" data-width="850" data-height="550"><i class="fa fa-plus"></i> 添加房间信息</a>
-	            </@shiro.hasPermission>
-	            </div>
-	            <div class="input-group">
-	               <input type="text" name="search" value="${search!}" class="form-control" placeholder="Search">
-	               <div class="input-group-btn">
-	                 <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-	                 <a href="/hm/roomManager/list/1" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+			<div class="box-header" >
+	               <div class="input-group" style="float: left">
+	                 <@shiro.hasPermission name="addRoomInfo">
+		              <a class="btn btn-primary dialog" href="javascript:;" data-url="/hm/roomManager/add" data-title="添加房间信息" data-width="850" data-height="550"><i class="fa fa-plus"></i> 添加房间信息</a>
+	                 </@shiro.hasPermission>
 	               </div>
+	            <div class="input-group" style="float: left">
+					<form method="post" action="/hm/roomManager/list/1">
+						<div class="input-group-btn">
+	                       <input type="text" name="search" value="${search!}" class="form-control" placeholder="Search">
+	                       <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+					       <a href="/hm/roomManager/list/1" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+						</div>
+					</form>
 	            </div>
-	            <div class="input-group pull-right">
-                 <button type="button" class="btn btn-primary btn-flat" onclick="exportTo('房间数据');"><i class="fa fa-file-excel-o"></i> 导出</button>
-            </div>
-	          </div><!-- /.box-header -->
-           </form>
+			   <div class="pull-right">
+				   <form method="post" action="/exportExcel/roomInfo">
+					   <button type="submit" class="btn btn-success " ><i class="fa fa-save"></i>  导 出</button>
+				   </form>
+			   </div>
+		   </div><!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
               <tr>
@@ -47,12 +49,15 @@
 				<th>家用电器</th>
 				<th>租金</th>
 				<th>押付模式</th>
+				<th>押金</th>
+				<th>网费</th>
+				<th>电梯房</th>
                 <th width="120px">操作</th>
               </tr>
               <#list pageData.getRecords() as roomInfo>
               	  <tr>
 	                <td>${(roomInfo.roomName)!}</td>
-	                <td>${(roomInfo.roomType)!}</td>
+					<td><#if roomInfo.roomType=="10">单间<#elseif roomInfo.roomType=="11">一室一厅<#elseif roomInfo.roomType=="21">两室一厅<#elseif roomInfo.roomType=="31">三室一厅<#else>未知房型</#if></td>
 					<td>${(roomInfo.application)!}</td>
 					<td>${(roomInfo.size)!}</td>
 					<td>${(roomInfo.orientation)!}</td>
@@ -60,7 +65,10 @@
 					<td>${(roomInfo.appendix)!}</td>
 					<td>${(roomInfo.houseAppliances)!}</td>
 					<td>${(roomInfo.rental)!}</td>
-	                <td><#if roomInfo.rentPatten==1>押一付一<#else>押一付二</#if></td>
+	                <td><#if roomInfo.rentPatten==1>押一付一<#elseif roomInfo.rentPatten==2>押二付一<#else>自定义</#if></td>
+					<td>${(roomInfo.deposit)!}</td>
+					<td>${(roomInfo.netPrice)!}</td>
+					<td><#if roomInfo.hasLift==1>是<#else>否</#if></td>
 	                <td>
 	                	<@shiro.hasPermission name="editRoomInfo">
 	                	  <a class="btn btn-primary btn-xs dialog" href="javascript:;" data-url="/hm/roomManager/edit/${(roomInfo.roomName)!}" data-title="编辑房间信息" data-width="850" data-height="550">编辑</a>
@@ -68,7 +76,7 @@
 	                	<@shiro.hasPermission name="deleteRoomInfo">
 	                	<a class="btn btn-danger btn-xs"
 	                	 data-tiggle="ajax"
-	                	 data-submit-url="/hm/roomManager/delete?id=${(roomInfo.roomName)!}"
+	                	 data-submit-url="/hm/roomManager/delete?roomName=${(roomInfo.roomName)!}"
 	                	 data-confirm="您确定要删除该条记录吗?">删除</a>
 	                	 </@shiro.hasPermission>
 	                </td>

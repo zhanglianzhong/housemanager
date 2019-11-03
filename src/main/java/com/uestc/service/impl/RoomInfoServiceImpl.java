@@ -35,17 +35,17 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo> i
     }
 
     @Override
-    public void insertRoomInfo(RoomInfo roomInfo) {
-         roomInfoMapper.insert(roomInfo);
+    public int insertRoomInfo(RoomInfo roomInfo) {
+       return roomInfoMapper.insert(roomInfo);
     }
 
     @Override
-    public void updateRoomInfo(RoomInfo roomInfo) {
-        roomInfoMapper.update(roomInfo,new EntityWrapper<RoomInfo>().eq("roomName",roomInfo.getRoomName()));
+    public int updateRoomInfo(RoomInfo roomInfo) {
+        return roomInfoMapper.update(roomInfo,new EntityWrapper<RoomInfo>().eq("roomName",roomInfo.getRoomName()));
     }
 
     @Override
-    public void delete(String roomName) {
-          roomInfoMapper.delete(new EntityWrapper<RoomInfo>().eq("roomName",roomName));
+    public int delete(String roomName) {
+         return roomInfoMapper.delete(new EntityWrapper<RoomInfo>().eq("roomName",roomName));
     }
 }

@@ -56,7 +56,7 @@ public class SettingController extends SuperController{
     	sysSettingService.updateBatchById(sysSettings);
     	redirectAttributes.addFlashAttribute("info","OK,更新成功!");
 		return redirectTo("/system/setting/page.html");
-		
+
     }
     
 }

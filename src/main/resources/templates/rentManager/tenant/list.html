@@ -15,25 +15,27 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
-           <form action="/hm/tenantManager/list/1" method="post" class="form-inline">
-	          <div class="box-header">
-	            <div class="input-group">
+	       <div class="box-header">
+	            <div class="input-group" style="float: left">
 	            <@shiro.hasPermission name="addTenantInfo">
 		            <a class="btn btn-primary dialog" href="javascript:;" data-url="/hm/tenantManager/add" data-title="添加租客信息" data-width="850" data-height="550"><i class="fa fa-plus"></i> 添加租客信息</a>
 	            </@shiro.hasPermission>
 	            </div>
-	            <div class="input-group">
-	               <input type="text" name="search" value="${search!}" class="form-control" placeholder="Search">
-	               <div class="input-group-btn">
-	                 <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-	                 <a href="/hm/tenantManager/list/1" class="btn btn-default"><i class="fa fa-refresh"></i></a>
-	               </div>
+	            <div class="input-group" style="float: left">
+				  <form method="post" action="/hm/tenantManager/list/1">
+					  <div class="input-group-btn">
+	                    <input type="text" name="search" value="${search!}" class="form-control" placeholder="Search">
+	                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+	                    <a href="/hm/tenantManager/list/1" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+	                 </div>
+				  </form>
 	            </div>
-	            <div class="input-group pull-right">
-                 <button type="button" class="btn btn-primary btn-flat" onclick="exportTo('租客数据');"><i class="fa fa-file-excel-o"></i> 导出</button>
-                </div>
-	          </div><!-- /.box-header -->
-           </form>
+			    <div class="pull-right">
+			       <form method="post" action="/exportExcel/tenantInfo">
+				       <button type="submit" class="btn btn-success " ><i class="fa fa-save"></i>  导 出</button>
+			       </form>
+		        </div>
+	        </div><!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
               <tr>
@@ -46,6 +48,7 @@
 				<th>手机号码</th>
 				<th>年龄</th>
 				<th>性别</th>
+				<th>租住状态</th>
 				<th>备注信息</th>
                 <th width="120px">操作</th>
               </tr>
@@ -60,6 +63,7 @@
 					<td>${(tenantInfo.telephone)!}</td>
 					<td>${(tenantInfo.age)!}</td>
 	                <td><#if tenantInfo.sex=="M">男<#else>女</#if></td>
+					<td><#if tenantInfo.tenantState==1>已入住<#else>已退租</#if></td>
 					<td>${(tenantInfo.note)!}</td>
 	                <td>
 	                	<@shiro.hasPermission name="editTenantInfo">

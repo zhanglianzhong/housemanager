@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.mapper.BillInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.uestc.entity.BillInfo">
+        <id column="roomName" property="roomName" />
+        <result column="month" property="month" />
+        <result column="tenantName" property="tenantName" />
+        <result column="lastMonthWater" property="lastMonthWater" />
+        <result column="curMonthWater" property="curMonthWater" />
+        <result column="realUseWater" property="realUseWater" />
+        <result column="waterUnitPrice" property="waterUnitPrice" />
+        <result column="lastMonthEle" property="lastMonthEle" />
+        <result column="curMonthEle" property="curMonthEle" />
+        <result column="realUseEle" property="realUseEle" />
+        <result column="eleUnitPrice" property="eleUnitPrice" />
+        <result column="rental" property="rental" />
+        <result column="liftFee" property="liftFee" />
+        <result column="netFee" property="netFee" />
+        <result column="sanitaryFee" property="sanitaryFee" />
+        <result column="publicFee" property="publicFee" />
+        <result column="totalFees" property="totalFees" />
+        <result column="payFlag" property="payFlag" />
+    </resultMap>
+
+    <select id="selectBillInfoList" resultType="java.util.HashMap">
+
+        SELECT * FROM `bill_info` r WHERE 1=1
+        <if test="search != null">
+            AND r.roomName LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
+        </if>
+        ORDER BY r.`roomName` DESC
+    </select>
+
+    <update id="updatePayFlag" >
+
+         UPDATE `bill_info` b SET b.payFlag = 'Y' WHERE b.roomName = #{roomName} AND b.month = #{month}
+    </update>
+
+
+</mapper>

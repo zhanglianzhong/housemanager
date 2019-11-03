@@ -3,14 +3,10 @@ package com.uestc.controller.hm;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.google.common.collect.Lists;
 import com.uestc.common.anno.Log;
 import com.uestc.common.bean.Rest;
 import com.uestc.common.controller.SuperController;
 import com.uestc.entity.RoomInfo;
-import com.uestc.entity.SysRole;
-import com.uestc.entity.SysUser;
-import com.uestc.entity.SysUserRole;
 import com.uestc.service.IRoomInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -79,18 +74,22 @@ public class RoomInfoController extends SuperController {
 	@RequestMapping("/doEdit")
 	@ResponseBody
 	public Rest doEdit(RoomInfo roomInfo, Model model){
-		roomInfoService.updateRoomInfo(roomInfo);
-		return Rest.ok();
+		int count = roomInfoService.updateRoomInfo(roomInfo);
+		if(count>0)	{
+			return Rest.ok("更新房间信息成功！");
+		}else {
+			return Rest.failure("更新房间信息失败！");
+		}
 	}
 
 
 	/**
-	 * 新增用户
+	 * 新增房间信息
 	 */
 	@RequiresPermissions("addRoomInfo")
 	@RequestMapping("/add")
 	public  String add(Model model){
-		return "rentManager/room//add";
+		return "rentManager/room/add";
 	}
 
 	/**
@@ -102,8 +101,12 @@ public class RoomInfoController extends SuperController {
 	@ResponseBody
 	public  Rest doAdd(RoomInfo roomInfo){
 
-		roomInfoService.insertRoomInfo(roomInfo);
-		return Rest.ok();
+		int count = roomInfoService.insertRoomInfo(roomInfo);
+		if(count>0){
+		   return Rest.ok("新增房间信息成功");
+		}else {
+		   return Rest.failure("新增房间信息失败，请检查输入数据！");
+		}
 	}
 
 	/**
@@ -113,9 +116,14 @@ public class RoomInfoController extends SuperController {
 	@Log("删除房间信息")
 	@RequestMapping("/delete")
 	@ResponseBody
-	public  Rest delete(String roomName){
-		roomInfoService.delete(new EntityWrapper<RoomInfo>().eq("roomName", roomName));
-		return Rest.ok();
-	}
+	public  Rest delete(String roomName) {
+		boolean isSuccess = roomInfoService.delete(new EntityWrapper<RoomInfo>().eq("roomName", roomName));
 
+		if (isSuccess) {
+			return Rest.ok("删除成功！");
+		} else {
+			return Rest.failure("删除失败！");
+		}
+
+	}
 }

@@ -1,0 +1,88 @@
+<#include "/common/layout_dl.html">
+<@header>
+</@header>
+<@body>
+ <form class="form-horizontal layui-form layui-form-pane" id="propertyAddForm" data-validator-option="{theme:'bootstrap', timely:3}">
+  <div class="box-body">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">房间号:</label>
+        <input value="${roomInfo.roomName}"   id="roomName" name="roomName" >
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">所属年月:</label>
+        <div class="form-group row">
+            <div class="right col-xs-3 text-left">
+                <div class="input-group">
+                    <input type="text" class="form-control form_datetime" id="month" name="month">
+                    <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">当前用水量(吨):</label>
+        <input value="${roomInfo.waterNum}"  id="waterNum" name="waterNum" data-rule="用水量:required;integer(+)">
+    </div>
+    <div class="form-group">
+          <label class="col-sm-2 control-label">当前用电量(度):</label>
+          <input value="${roomInfo.electricNum}" id="electricNum" name="electricNum" data-rule="用电量:required;integer(+)">
+    </div>
+     <div class="form-group">
+      	<label  class="col-sm-2 control-label"></label>
+       	<div class="col-sm-10">
+       		 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>  提 交</button>
+       	</div>
+     </div>
+  </div><!-- /.box-body -->
+</form>
+<script type="text/javascript">
+
+    //日期
+    $('.form_datetime').datetimepicker({
+        startView:"decade",
+        minView: "3", //选择日期后，不会再跳转去选择时分秒
+        language:  'zh-CN',
+        format: 'yyyy-mm',
+        todayBtn:  1,
+        autoclose: 1
+    });
+
+</script>
+
+</@body>
+<@footer>
+
+<script type="text/javascript">
+
+    //设置表单验证规则
+    $("#propertyAddForm").validator({
+        dataFilter:function (data) {
+            if(data.code == 200){
+                return{"ok": data.msg};
+            }else {
+                return data.msg;
+            }
+        },
+        fields: {
+            roomName: "房间编号:required;length(5);remote(/hm/propertyManager/checkRoomValid, roomName)",
+            month: "required;remote(/hm/propertyManager/checkMonthValid, roomName, month)"
+        }
+    });
+    //接收表单验证通过的事件
+    $('#propertyAddForm').bind('valid.form', function(){
+        $.ajax({
+            url: '/hm/propertyManager/doAdd',
+            type: 'POST',
+            dataType:'json',
+            data: $(this).serialize(),
+            success: function(result){
+                layer.msg(result.msg, {time: 2000},function(){
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index);
+                });
+            }
+        });
+    });
+</script>
+
+</@footer>

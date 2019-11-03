@@ -1,0 +1,87 @@
+body, ul, li, dl, ol, dt, dd, table, td, th, form, h1, h2, h3, h4, h5, h6, p, img, em, b, label, input {
+	margin:0;
+	padding:0;
+}
+ul, li {
+	list-style:none;
+}
+img {
+	border:none;
+}
+a {
+	color:#666;
+	text-decoration:none;
+}
+a:hover {
+	color:#F30;
+}
+.clearfix:after {
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden
+}
+* html .clearfix {
+	height:1%
+}
+*+html .clearfix {
+	min-height:1%
+}
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+.form {
+	width:860px;
+	margin:0 auto;
+	border:1px solid #aaa
+}
+.title {
+	width:130px;
+	float:left;
+}
+.titlec {
+	float:left;
+}
+.bdbottomc {
+	border:#333 2px solid;
+}
+.bdbottoml {
+	float:left;
+}
+.bdbottomctop dd {
+	width:254px；
+}
+.a {
+	padding-right: 20px;
+}
+.b {
+	padding-right: 20px;
+}
+.c {
+	padding-right: 20px;
+}
+.bdbottomca li {
+	float:left;
+	width:189px;
+}
+.bdbottomcbul {
+	float:left;
+}
+.bdbottomcbb {
+	border:#000 2px solid;
+	float:right;
+}
+.bdbottomcbb span {
+	border:#000 2px solid;
+	border-right:none;
+	border-bottom:none;
+}
+.bdbottomr {
+	float:right
+}
+
+

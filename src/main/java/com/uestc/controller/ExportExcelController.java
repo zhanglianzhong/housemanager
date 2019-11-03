@@ -1,18 +1,23 @@
 package com.uestc.controller;
 
-import com.uestc.common.bean.Rest;
 import com.uestc.common.controller.SuperController;
-import com.uestc.entity.ComponentInfo;
 import com.uestc.entity.ExcelData;
-import com.uestc.service.IComponentInfoService;
-import com.uestc.service.impl.ComponentInfoExportExcelServiceImpl;
-import com.uestc.service.impl.ComponentInfoServiceImpl;
+import com.uestc.entity.PropertyInfo;
+import com.uestc.entity.RoomInfo;
+import com.uestc.entity.TenantInfo;
+import com.uestc.service.IPropertyInfoService;
+import com.uestc.service.IRoomInfoService;
+import com.uestc.service.ITenantInfoService;
+import com.uestc.service.impl.PropertyInfoExportExcelServiceImpl;
+import com.uestc.service.impl.RoomInfoExportExcelServiceImpl;
+import com.uestc.service.impl.TenantInfoExportExcelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,25 +27,53 @@ import java.util.List;
 @Controller
 @RequestMapping("/exportExcel")
 public class ExportExcelController extends SuperController {
-    @Autowired
-    private ComponentInfoExportExcelServiceImpl componentInfoExportExcelService;
-    @Autowired
-    private IComponentInfoService componentInfoService;
 
-    @RequestMapping("/componentsInfo")
-    public void exportComponentInfoExcel(HttpServletResponse response) throws Exception{
-        List<ComponentInfo> dataList = componentInfoService.selectList(null);
+    @Autowired
+    private RoomInfoExportExcelServiceImpl roomInfoExportExcelService;
 
-        ExcelData<ComponentInfo> excelData = new ExcelData<>();
-        excelData.setSheetName("元器件库存信息");
-        excelData.setTitles(componentInfoExportExcelService.getTitles());
+    @Autowired
+    private TenantInfoExportExcelServiceImpl tenantInfoExportExcelService;
+
+    @Autowired
+    private PropertyInfoExportExcelServiceImpl propertyInfoExportExcelService;
+
+
+    @Autowired
+    private IRoomInfoService roomInfoService;
+
+    @Autowired
+    private ITenantInfoService tenantInfoService;
+
+    @Autowired
+    private IPropertyInfoService propertyInfoService;
+
+
+    @RequestMapping("/roomInfo")
+    public void exportRoomInfoExcel(HttpServletResponse response) throws Exception{
+        List<RoomInfo> dataList = roomInfoService.selectList(null);
+
+        ExcelData<RoomInfo> excelData = new ExcelData<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        String dateTime = sdf.format(new Date());
+        excelData.setSheetName("房间信息");
+        excelData.setTitles(roomInfoExportExcelService.getTitles());
         excelData.setRows(dataList);
 
-        componentInfoExportExcelService.exportExcel(response,"元器件库存信息.xlsx",excelData);
-
-
+        roomInfoExportExcelService.exportExcel(response,"房间信息"+dateTime+".xlsx",excelData);
     }
 
+    @RequestMapping("/propertyInfo")
+    public void exportTenantInfoExcel(HttpServletResponse response) throws Exception{
+        List<PropertyInfo> dataList = propertyInfoService.selectList(null);
 
+        ExcelData<PropertyInfo> excelData = new ExcelData<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        String dateTime = sdf.format(new Date());
+        excelData.setSheetName("水电信息");
+        excelData.setTitles(propertyInfoExportExcelService.getTitles());
+        excelData.setRows(dataList);
+
+        propertyInfoExportExcelService.exportExcel(response,"水电信息"+dateTime+".xlsx",excelData);
+    }
 
 }

@@ -1,6 +1,5 @@
 package com.uestc.config;
 
-import com.uestc.common.util.HandleTimeInterceptor;
 import com.uestc.interceptor.GlobalInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +34,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
         .excludePathPatterns("/upload/**")
         .addPathPatterns("/**");
 
-        registry.addInterceptor(getHandleTimeInterceptor()).addPathPatterns("/**");
     }
 
     @Bean
@@ -48,12 +46,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
         return resolver;
     }
 
-
-
-    @Bean
-    public HandleTimeInterceptor getHandleTimeInterceptor(){
-        HandleTimeInterceptor handleTimeInterceptor = new HandleTimeInterceptor();
-        return handleTimeInterceptor;
-
-    }
 }

@@ -1,0 +1,202 @@
+<#include "/common/layout_dl.html">
+<@header>
+<link rel="stylesheet" href="bill.css">
+</@header>
+<@body>
+<body>
+<div class="form">
+  <div style="position: relative;height: 125px;">
+    <div style="text-align: center;padding-top:20px;font-weight: 600;font-size: 34px;">收 款 收 据</div>
+    <div style="position: absolute;top: 40px;right: 0px;font-size: 20px;">No:
+      <input type="text" class="txt" name="number" id="number" value=""  autocomplete="off" style="border:none; width:100px;height:30px;background:#fff" maxlength="10"/>
+    </div>
+    <div style="position: absolute;top: 80px;left: 40px;font-size: 16px;"><b>租户名称:</b>
+      <input type="text" class="txt" name="tenantName" id="tenantName" value="${billInfo.tenantName}"  autocomplete="off" style="border:none; border-bottom:1px solid #000; width:60px;background:#fff" maxlength="5"/>&nbsp;
+      <input type="text" class="txt" name="No" id="No" value=""  autocomplete="off" style="border:none; text-align:center; border-bottom:1px solid #000; width:40px;background:#fff" maxlength="4"/>
+      <b>号</b>
+      <input type="text" class="txt" name="building" id="building" value="${billInfo.roomName?substring(0,2)}"  autocomplete="off" style="border:none; text-align:center; border-bottom:1px solid #000; width:30px;background:#fff" maxlength="2"/>
+      <b>栋</b>
+      <input type="text" class="txt" name="searchtxt" id="roomNum" value="${billInfo.roomName?substring(2,5)}"  autocomplete="off" style="border:none; text-align:center; border-bottom:1px solid #000; width:30px;background:#fff" maxlength="3"/>
+      <b>房</b> </div>
+    <div style="position: absolute;top: 100px;right: 42px;font-size: 12px;">
+      <input type="text" class="txt" name="searchtxt" id="year" value="${billInfo.month?substring(0,4)}"   autocomplete="off" style="border:none; text-align:center; border-bottom:1px solid #000; width:50px;background:#fff" maxlength="4"/>
+      <b>年</b>
+      <input type="text" class="txt" name="searchtxt" id="month" value="${billInfo.month?substring(5,7)}"  autocomplete="off" style="border:none; text-align:center; border-bottom:1px solid #000; width:30px;background:#fff" maxlength="2"/>
+      <b>月</b>
+      <input type="text" class="txt" name="searchtxt" id="day" value=""  autocomplete="off" style="border:none; text-align:center; border-bottom:1px solid #000; width:30px;background:#fff" maxlength="2"/>
+      <b>日</b> </div>
+    </div>
+  <div class="bd clearfix">
+    <div class="bdbottom">
+      <table width="100%">
+
+        <tr>
+          <td align="center" width="5%">&nbsp;</td>
+          <td width="90%"><div class="bdbottomc">
+            <table width="100%" style="border-collapse:collapse">
+              <tr>
+                <td style="border:1px solid #000;text-align: center;"><b>项目</b><br/>Description</td>
+                <td style="border:1px solid #000;text-align: center;"><b>上月</b><br/>Last Month</td>
+                <td style="border:1px solid #000;text-align: center;"><b>本月</b><br/>Cur Month</td>
+                <td style="border:1px solid #000;text-align: center;"><b>实用</b><br/>Real Use</td>
+                <td style="border:1px solid #000;text-align: center;"><b>单价</b><br/>Unit Price</td>
+                <td style="border:1px solid #000;text-align: center;"><b>金 Amount 额</b><br/><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td style="border:1px solid #000; padding:2px;height:30px">万</td>
+                    <td style="border:1px solid #000; padding:2px;height:30px">仟</td>
+                    <td style="border:1px solid #000; padding:2px;height:30px">佰</td>
+                    <td style="border:1px solid #000; padding:2px;height:30px">拾</td>
+                    <td style="border:1px solid #000; padding:2px;height:30px">元</td>
+                    <td style="border:1px solid #000; padding:2px;height:30px">角</td>
+                    <td style="border:1px solid #000; padding:2px;height:30px">分</td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding:2px" align="center"><label   name="searchtxt" id="waterFee"><b>水费(吨)</b></label></td>
+                <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="lastMonthWater" id="lastMonthWater" value="${billInfo.lastMonthWater}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="curMonthWater" id="curMonthWater" value="${billInfo.curMonthWater}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="realUseWater" id="realUseWater" value="${billInfo.realUseWater}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="waterUnitPrice" id="waterUnitPrice" value="${billInfo.waterUnitPrice?string('0.00')}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000;width: 29%;"><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="waterFeeWan" value="${waterFeeReverse?substring(7,8)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="waterFeeQian" value="${waterFeeReverse?substring(6,7)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="waterFeeBai" value="${waterFeeReverse?substring(5,6)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="waterFeeShi" value="${waterFeeReverse?substring(4,5)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="waterFeeGe" value="${waterFeeReverse?substring(3,4)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="waterFeeJiao" value="${waterFeeReverse?substring(1,2)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="waterFeeFen" value="${waterFeeReverse?substring(0,1)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                  </tr>
+                </table></td>
+              <tr>
+              <td style="border:1px solid #000; padding:2px" align="center"><label   name="searchtxt" id="eleFee"><b>电费(度)</b></label></td>
+                <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="lastMonthEle" id="lastMonthEle" value="${billInfo.lastMonthEle}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="curMonthEle" id="curMonthEle" value="${billInfo.curMonthEle}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="realUseEle" id="realUseEle" value="${billInfo.realUseEle}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="eleUnitPrice" id="eleUnitPrice" value="${billInfo.eleUnitPrice?string('0.00')}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000;width: 29%;"><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="eleFeeWan" value="${eleFeeReverse?substring(7,8)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="eleFeeQian" value="${eleFeeReverse?substring(6,7)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="eleFeeBai" value="${eleFeeReverse?substring(5,6)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="eleFeeShi" value="${eleFeeReverse?substring(4,5)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="eleFeeGe" value="${eleFeeReverse?substring(3,4)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="eleFeeJiao" value="${eleFeeReverse?substring(1,2)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="eleFeeFen" value="${eleFeeReverse?substring(0,1)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding:2px" align="center"><label   name="rental" id="rentalLabel"><b>房租</b></label></td>
+                <td style="border:1px solid #000; padding:2px" colspan="4"><input type="text" class="txt" name="rental" id="rental" value="${billInfo.rental}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000;"><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="rentalWan" value="${rentalReverse?substring(7,8)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="rentalQian" value="${rentalReverse?substring(6,7)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="rentalBai" value="${rentalReverse?substring(5,6)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="rentalShi" value="${rentalReverse?substring(4,5)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="rentalGe" value="${rentalReverse?substring(3,4)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="rentalJiao" value="${rentalReverse?substring(1,2)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="rentalFen" value="${rentalReverse?substring(0,1)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding:2px" align="center"><label   name="rental" id="liftFeeLabel"><b>电梯费</b></label></td>
+                <td style="border:1px solid #000; padding:2px" colspan="4"><input type="text" class="txt" name="liftFee" id="liftFee" value="${billInfo.liftFee?string('0.00')}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000;"><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="liftFeeWan" value="${liftFeeReverse?substring(7,8)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="liftFeeQian" value="${liftFeeReverse?substring(6,7)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="liftFeeBai" value="${liftFeeReverse?substring(5,6)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="liftFeeShi" value="${liftFeeReverse?substring(4,5)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="liftFeeGe" value="${liftFeeReverse?substring(3,4)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="liftFeeJiao" value="${liftFeeReverse?substring(1,2)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="liftFeeFen" value="${liftFeeReverse?substring(0,1)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding:2px" align="center"><label   name="rental" id="netFeeLabel"><b>网费</b></label></td>
+                <td style="border:1px solid #000; padding:2px" colspan="4"><input type="text" class="txt" name="netFee" id="netFee" value="${billInfo.netFee?string('0.00')}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000;"><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="netFeeWan" value="${netFeeReverse?substring(7,8)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="netFeeQian" value="${netFeeReverse?substring(6,7)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="netFeeBai" value="${netFeeReverse?substring(5,6)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="netFeeShi" value="${netFeeReverse?substring(4,5)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="netFeeGe" value="${netFeeReverse?substring(3,4)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="netFeeJiao" value="${netFeeReverse?substring(1,2)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="netFeeFen" value="${netFeeReverse?substring(0,1)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    </tr>
+                </table></td>
+              <tr>
+              <td style="border:1px solid #000; padding:2px" align="center"><label   name="rental" id="sanitaryFeeLabel"><b>卫生费</b></label></td>
+                <td style="border:1px solid #000; padding:2px" colspan="4"><input type="text" class="txt" name="sanitaryFee" id="sanitaryFee" value="${billInfo.sanitaryFee?string('0.00')}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000;"><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="sanitaryFeeWan" value="${sanitaryFeeReverse?substring(7,8)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="sanitaryFeeQian" value="${sanitaryFeeReverse?substring(6,7)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="sanitaryFeeBai" value="${sanitaryFeeReverse?substring(5,6)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="sanitaryFeeShi" value="${sanitaryFeeReverse?substring(4,5)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="sanitaryFeeGe" value="${sanitaryFeeReverse?substring(3,4)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="sanitaryFeeJiao" value="${sanitaryFeeReverse?substring(1,2)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="sanitaryFeeFen" value="${sanitaryFeeReverse?substring(0,1)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    </tr>
+                </table></td>
+              <tr>
+              <td style="border:1px solid #000; padding:2px" align="center"><label   name="rental" id="publicFeeLabel"><b>公共费</b></label></td>
+                <td style="border:1px solid #000; padding:2px" colspan="4"><input type="text" class="txt" name="publicFee" id="publicFee" value="${billInfo.publicFee?string('0.00')}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px" /></td>
+                <td style="border:1px solid #000;"><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="publicFeeWan" value="${publicFeeReverse?substring(7,8)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="publicFeeQian" value="${publicFeeReverse?substring(6,7)}" autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="publicFeeBai" value="${publicFeeReverse?substring(5,6)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="publicFeeShi" value="${publicFeeReverse?substring(4,5)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="publicFeeGe" value="${publicFeeReverse?substring(3,4)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="publicFeeJiao" value="${publicFeeReverse?substring(1,2)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    <td style="border:1px solid #000; padding:2px"><input type="text" class="txt" name="searchtxt" id="publicFeeFen" value="${publicFeeReverse?substring(0,1)}"  autocomplete="off" style="border:none; background:#fff; width:90%; text-align:center; height:40px"/></td>
+                    </tr>
+                </table></td>
+              </tr>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000;text-align: center;">合计金额<br/>TOTAL</td>
+
+                <td colspan="4" style="border:1px solid #000;text-align: center;"><table width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                  <tr>
+                    <td><input type="text" class="txt" name="totalFeesWan" id="totalFeesWan" value="${totalFeesReverse?substring(7,8)}"  autocomplete="off" style="border:none; background:#fff; width:25px; text-align:center; height:40px"/></td><td style="padding:2px;height:30px"><b>万</b></td>
+                    <td><input type="text" class="txt" name="searchtxt" id="totalFeesQian" value="${totalFeesReverse?substring(6,7)}"  autocomplete="off" style="border:none; background:#fff; width:25px; text-align:center; height:40px"/></td><td style="padding:2px;height:30px"><b>仟</b></td>
+                    <td><input type="text" class="txt" name="searchtxt" id="totalFeesBai" value="${totalFeesReverse?substring(5,6)}"  autocomplete="off" style="border:none; background:#fff; width:25px; text-align:center; height:40px"/></td><td style="padding:2px;height:30px"><b>佰</b></td>
+                    <td><input type="text" class="txt" name="searchtxt" id="totalFeesShi" value="${totalFeesReverse?substring(4,5)}"  autocomplete="off" style="border:none; background:#fff; width:25px; text-align:center; height:40px"/></td><td style="padding:2px;height:30px"><b>拾</b></td>
+                    <td><input type="text" class="txt" name="searchtxt" id="totalFeesGe" value="${totalFeesReverse?substring(3,4)}"  autocomplete="off" style="border:none; background:#fff; width:25px; text-align:center; height:40px"/></td><td style="padding:2px;height:30px"><b>元</b></td>
+                    <td><input type="text" class="txt" name="searchtxt" id="totalFeesJiao" value="${totalFeesReverse?substring(1,2)}"  autocomplete="off" style="border:none; background:#fff; width:25px; text-align:center; height:40px"/></td><td style="padding:2px;height:30px"><b>角</b></td>
+                    <td><input type="text" class="txt" name="searchtxt" id="totalFeesFen" value="${totalFeesReverse?substring(0,1)}"  autocomplete="off" style="border:none; background:#fff; width:25px; text-align:center; height:40px"/></td><td style="padding:2px;height:30px"><b>分</b></td>
+                  </tr>
+                </table>
+                </td>
+                <td style="border:1px solid #000;padding-left: 10px;">￥：<input type="text" class="txt" name="totalFees" id="totalFees" value="${billInfo.totalFees?string('0.00')}"  autocomplete="off" style="border:none; background:#fff; width:140px; text-align:center; height:40px"/></td>
+              </tr>
+            </table>
+          <td align="center"><div> 第<br />
+              <input type="text" name="tt" id="tt" style="border:none; width:14px; text-align:center; background:#fff" maxlength="1"/>
+              <br />
+              联<br />
+              <br />
+              存<br />
+              根 </div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="foot" style="background:#fff; padding: 15px 40px 10px; " >
+       <span style="margin-left: 50px;margin-right: 400px">开票人：<input type="text" name="tt" style="border:none; background:#fff; width:70px" /></span>
+       <span>收款人：<input type="text" name="tt" style="border:none; background:#fff; width:70px" /></span>
+  </div>
+
+</div>
+
+</@body>
+<@footer>
+</@footer>

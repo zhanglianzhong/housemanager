@@ -66,6 +66,13 @@ public class TenantInfo extends Model<TenantInfo> {
      */
     private String sex;
 
+
+
+    /**
+     * 租住状态, 1 - 已入住 , 2 - 已退租
+     */
+    private Integer tenantState;
+
     /**
      * 备注信息
      */
@@ -138,6 +145,14 @@ public class TenantInfo extends Model<TenantInfo> {
         return note;
     }
 
+    public Integer getTenantState() {
+        return tenantState;
+    }
+
+    public void setTenantState(Integer tenantState) {
+        this.tenantState = tenantState;
+    }
+
     public void setNote(String note) {
         this.note = note;
     }
@@ -159,6 +174,7 @@ public class TenantInfo extends Model<TenantInfo> {
         ", telephone=" + telephone +
         ", age=" + age +
         ", sex=" + sex +
+        ", tenantState=" + tenantState +
         ", note=" + note +
         "}";
     }

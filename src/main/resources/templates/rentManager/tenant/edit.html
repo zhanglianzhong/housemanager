@@ -2,7 +2,7 @@
 <@header>
 </@header>
 <@body>
- <form class="form-horizontal layui-form layui-form-pane"  method="post" action="/hm/tenantManager/doEdit">
+ <form class="form-horizontal layui-form layui-form-pane" id="tenantEditForm" data-validator-option="{theme:'bootstrap', timely:3}"> >
   <div class="box-body">
     <div class="form-group" id="id">
         <input value="${tenantInfo.tenantId}"   id="tenantId" name="tenantId" >
@@ -20,7 +20,7 @@
           <div class="form-group row">
               <div class="right col-xs-3 text-left">
                   <div class="input-group">
-                      <input type="text" class="form-control form_datetime" value="${tenantInfo.tenantDate}" id="tenantDate" name="tenantDate" >
+                      <input type="text" class="form-control form_datetime" value="${tenantInfo.tenantDate}" id="tenantDate" name="tenantDate" data-rule="required">
                       <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
                   </div>
               </div>
@@ -28,32 +28,45 @@
     </div>
       <div class="form-group">
           <label class="col-sm-2 control-label"> 租房合同期限:</label>
-          <input class="col-sm-1" value="${tenantInfo.contractDuration}" id="contractDuration" name="contractDuration">
+          <input class="col-sm-1" value="${tenantInfo.contractDuration}" id="contractDuration" name="contractDuration" data-rule="租房合同期限:required;integer(+);range(1-99,true)">
           <label class="col-sm-1 control-label"> (月)</label>
       </div>
       <div class="form-group">
           <label class="col-sm-2 control-label">身份证号:</label>
-          <input value="${tenantInfo.identityCardNum}" id="identityCardNum" name="identityCardNum" >
+          <input value="${tenantInfo.identityCardNum}" id="identityCardNum" name="identityCardNum" data-rule="required;IDcard">
       </div>
       <div class="form-group">
           <label class="col-sm-2 control-label">手机号码:</label>
-          <input value="${tenantInfo.telephone}" id="telephone" name="telephone" >
+          <input value="${tenantInfo.telephone}" id="telephone" name="telephone" data-rule="required;mobile">
       </div>
       <div class="form-group">
           <label class="col-sm-2 control-label">年龄:</label>
-          <input value="${tenantInfo.age}" id="age" name="age" >
+          <input value="${tenantInfo.age}" id="age" name="age" data-rule="年龄:required;integer(+);range(1-100,true)">
       </div>
       <div class="form-group">
           <label  class="col-sm-2 control-label">性别:</label>
           <div class="col-sm-10">
               <label>
-                  <input name="sex" type="radio" class="minimal" ${(tenantInfo.sex =="M")?string('checked','')} value="M" lay-ignore> 男
+                  <input name="sex" type="radio" class="minimal" ${(tenantInfo.sex =="M")?string('checked','')} data-rule="checked" value="M" lay-ignore> 男
               </label>
               <label>
                   <input name="sex" type="radio" class="minimal" ${(tenantInfo.sex =="F")?string('checked','')}  value="F" lay-ignore> 女
               </label>
           </div>
       </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">租住状态:</label>
+          <div class="col-sm-10">
+              <label>
+                  <input name="tenantState" type="radio" class="minimal" ${(tenantInfo.tenantState ==1)?string('checked','')} data-rule="checked" value=1 lay-ignore> 已入住
+              </label>
+              <label>
+                  <input name="tenantState" type="radio" class="minimal" ${(tenantInfo.tenantState ==2)?string('checked','')}  value=2 lay-ignore> 已退租
+              </label>
+          </div>
+      </div>
+
+
       <div class="form-group">
           <label class="col-sm-2 control-label">备注信息:</label>
           <div class="col-sm-8">
@@ -63,7 +76,7 @@
      <div class="form-group">
       	<label  class="col-sm-2 control-label"></label>
        	<div class="col-sm-10">
-       		 <button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>  提 交</button>
+       		 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>  提 交</button>
        	</div>
      </div>
   </div><!-- /.box-body -->
@@ -83,4 +96,37 @@
 </script>
 </@body>
 <@footer>
+<script type="text/javascript">
+    //设置表单验证规则
+    $("#tenantEditForm").validator({
+        dataFilter:function (data) {
+            if(data.code == 200){
+                return{"ok": data.msg};
+            }else {
+                return data.msg;
+            }
+        },
+        fields: {
+            roomName: "required;length(5);remote(/hm/tenantManager/checkRoomValid, roomName)"
+        }
+    });
+
+    //接收表单验证通过的事件
+    $('#tenantEditForm').bind('valid.form', function(){
+        $.ajax({
+            url: '/hm/tenantManager/doEdit',
+            type: 'POST',
+            dataType:'json',
+            data: $(this).serialize(),
+            success: function(result){
+                layer.msg(result.msg, {time: 2000},function(){
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index);
+                });
+            }
+        });
+    });
+
+</script>
+
 </@footer>

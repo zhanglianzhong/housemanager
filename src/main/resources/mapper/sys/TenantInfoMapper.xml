@@ -13,6 +13,7 @@
         <result column="telephone" property="telephone" />
         <result column="age" property="age" />
         <result column="sex" property="sex" />
+        <result column="tenantState" property="tenantState" />
         <result column="note" property="note" />
     </resultMap>
 

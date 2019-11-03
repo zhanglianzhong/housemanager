@@ -14,17 +14,18 @@
         <result column="houseAppliances" property="houseAppliances" />
         <result column="rental" property="rental" />
         <result column="rentPatten" property="rentPatten" />
+        <result column="deposit" property="deposit" />
+        <result column="netPrice" property="netPrice" />
+        <result column="hasLift" property="hasLift" />
     </resultMap>
 
-    <select id="selectRoomInfoList" resultType="java.util.HashMap">
+        <select id="selectRoomInfoList" resultType="java.util.HashMap">
 
-        SELECT * FROM `room_info` r WHERE 1=1
-        <if test="search != null">
-            AND r.roomName LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
-        </if>
-        ORDER BY r.`roomName` DESC
-    </select>
-
-
+           SELECT * FROM `room_info` r WHERE 1=1
+             <if test="search != null">
+              AND r.roomName LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
+             </if>
+              ORDER BY r.`roomName` DESC
+        </select>
 
 </mapper>

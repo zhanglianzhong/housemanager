@@ -1,6 +1,7 @@
 package com.uestc.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.uestc.common.bean.Rest;
 import com.uestc.entity.RoomInfo;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -25,13 +26,13 @@ public interface IRoomInfoService extends IService<RoomInfo>{
     /**
      * 插入房间信息
      */
-    void insertRoomInfo(RoomInfo roomInfo);
+    int insertRoomInfo(RoomInfo roomInfo);
     /**
      * 更新房间信息
      */
-    void updateRoomInfo(RoomInfo roomInfo);
+    int updateRoomInfo(RoomInfo roomInfo);
     /**
      * 删除房间信息
      */
-    void delete(String roomName);
+    int delete(String roomName);
 }
