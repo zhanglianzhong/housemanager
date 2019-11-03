@@ -73,7 +73,7 @@ public class MeController extends SuperController {
 		SysUser sysUser = (SysUser) subject.getPrincipal();
     	
     	SysUser user = sysUserService.selectById(sysUser.getId());
-    	if(!user.getPassword().equals(CommonUtil.MD5(password))){
+		if(!user.getPassword().equals(ShiroUtil.md51024Pwd(password,user.getUserName()))){
     		redirectAttributes.addFlashAttribute("msg","旧密码输入错误.");
     		return redirectTo("/system/me/pwd");
     	}
@@ -82,8 +82,8 @@ public class MeController extends SuperController {
     		redirectAttributes.addFlashAttribute("msg","两次输入的密码不一致.");
     		return redirectTo("/system/me/pwd");
     	}
-    	
-    	user.setPassword(CommonUtil.MD5(newpassword));
+
+		user.setPassword(ShiroUtil.md51024Pwd(newpassword, user.getUserName()));
     	sysUserService.updateById(user);
     	
     	redirectAttributes.addFlashAttribute("info","密码修改成功.");

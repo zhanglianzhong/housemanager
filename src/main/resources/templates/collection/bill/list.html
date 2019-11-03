@@ -48,7 +48,7 @@
                       <td>${(billInfo.totalFees)!}</td>
                       <td><#if billInfo.payFlag=="Y"><font color="gree">已缴纳</font><#else><font color="red">未缴纳</font></#if></td>
 	                <td>
-	                	<@shiro.hasPermission name="editTenantInfo">
+	                	<@shiro.hasPermission name="editBillInfo">
                         <a class="btn bg-danger btn-xs"
                            data-tiggle="ajax"
                            data-submit-url="/collection/bill/setStatus?roomName=${(billInfo.roomName)!}&month=${(billInfo.month)!}"

@@ -53,6 +53,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		// TODO Auto-generated method stub
 		sysUser.setPassword(null);
 		//更新用户
+		sysUser.setPassword(ShiroUtil.md51024Pwd(sysUser.getPassword(), sysUser.getUserName()));
 		userMapper.updateById(sysUser);
 		//删除已有权限
 		userRoleMapper.delete(new EntityWrapper<SysUserRole>().eq("userId",sysUser.getId()));
