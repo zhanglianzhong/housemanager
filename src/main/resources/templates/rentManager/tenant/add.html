@@ -98,7 +98,7 @@
     });
 
     //接收表单验证通过的事件
-    $('#roomAddForm').bind('valid.form', function(){
+    $('#tenantAddForm').bind('valid.form', function(){
         $.ajax({
             url: '/hm/tenantManager/doAdd',
             type: 'POST',

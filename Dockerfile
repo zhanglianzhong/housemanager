@@ -1,4 +1,5 @@
 FROM java:8
 MAINTAINER ZhangLianzhong
-ADD ./springboot-adminlte-admin-0.0.1-SNAPSHOT.jar app.jar
+ADD target/housemanager-1.0.0.jar app.jar
+EXPOSE 80
 ENTRYPOINT ["java","-jar","/app.jar"]

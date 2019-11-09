@@ -62,8 +62,23 @@ public class ExportExcelController extends SuperController {
         roomInfoExportExcelService.exportExcel(response,"房间信息"+dateTime+".xlsx",excelData);
     }
 
-    @RequestMapping("/propertyInfo")
+    @RequestMapping("/tenantInfo")
     public void exportTenantInfoExcel(HttpServletResponse response) throws Exception{
+        List<TenantInfo> dataList = tenantInfoService.selectList(null);
+
+        ExcelData<TenantInfo> excelData = new ExcelData<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        String dateTime = sdf.format(new Date());
+        excelData.setSheetName("租客信息");
+        excelData.setTitles(tenantInfoExportExcelService.getTitles());
+        excelData.setRows(dataList);
+
+        tenantInfoExportExcelService.exportExcel(response,"租客信息"+dateTime+".xlsx",excelData);
+    }
+
+
+    @RequestMapping("/propertyInfo")
+    public void exportPropertyInfoExcel(HttpServletResponse response) throws Exception{
         List<PropertyInfo> dataList = propertyInfoService.selectList(null);
 
         ExcelData<PropertyInfo> excelData = new ExcelData<>();
