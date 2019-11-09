@@ -31,7 +31,7 @@
 		<commons-lang3.version>3.4</commons-lang3.version>
 		<commons-fileupload.version>1.3.1</commons-fileupload.version>
 		<fastjson.version>1.2.31</fastjson.version>
-		<freemarker.version>2.3.23</freemarker.version>
+		<freemarker.version>2.0.1.RELEASE</freemarker.version>
 		<kaptcha-version>0.0.9</kaptcha-version>
 		<ehcache.version>2.6.11</ehcache.version>
 		<hibernate-validator.version>6.0.0.Final</hibernate-validator.version>
@@ -217,6 +217,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
+			<version>${freemarker.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>
@@ -252,9 +253,9 @@
 				<version>0.4.3</version>
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
+					<dockerDirectory>./</dockerDirectory>
 					<imageTags>${project.version}</imageTags>
-					<dockerHost>http://192.168.245.100:6666</dockerHost>
+					<!--<dockerHost>http://192.168.245.100:6666</dockerHost>-->
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
@@ -277,6 +278,5 @@
 		</resources>
 
 	</build>
-
 
 </project>
