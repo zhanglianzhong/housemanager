@@ -4,6 +4,7 @@ package com.uestc.controller.hm;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.uestc.common.anno.Log;
+import com.uestc.common.bean.BusinessException;
 import com.uestc.common.bean.Rest;
 import com.uestc.common.controller.SuperController;
 import com.uestc.entity.*;
@@ -160,7 +161,7 @@ public class PropertyInfoController extends SuperController {
 
         PropertyInfo lastPropertyInfo = propertyInfoService.selectOne(new EntityWrapper<PropertyInfo>().eq("roomName", roomName).eq("month",lastMonth));
         if(null == lastPropertyInfo){
-            throw new Exception("读取上月水电数据失败，请先录入上月数据，再尝试预览账单！");
+            throw new BusinessException("读取上月水电数据失败，请先录入上月数据，再尝试预览账单！");
         }
 
         PropertyInfo curPropertyInfo = propertyInfoService.selectOne(new EntityWrapper<PropertyInfo>().eq("roomName",roomName).eq("month",curMonth));
@@ -177,7 +178,7 @@ public class PropertyInfoController extends SuperController {
        //查询该房间当前租客
        TenantInfo tenantInfo = tenantInfoService.selectOne(new EntityWrapper<TenantInfo>().eq("roomName",roomName).eq("tenantState",1));
        if(null ==tenantInfo){
-           throw new Exception("未查到该房间的租客信息！");
+           throw new BusinessException("未查到该房间的租客信息！");
        }
 
 

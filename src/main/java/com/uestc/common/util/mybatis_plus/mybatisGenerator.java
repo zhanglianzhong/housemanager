@@ -29,7 +29,7 @@ public class mybatisGenerator {
     /**
      * 输出文件的路径
      */
-   // private static final String OUT_PATH = "/Users/zhanglianzhong/JavaWorkspace/housemanager/src/main/java";
+
       private static final String OUT_PATH = "/Users/zhanglianzhong/JavaWorkspace/mybatisplus";
     /**
      * 代码生成者

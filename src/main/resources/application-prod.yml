@@ -5,10 +5,10 @@ spring:
   datasource:
     druid:
       type : com.alibaba.druid.pool.DruidDataSource
-      url : jdbc:mysql://172.18.191.211:3306/housemanagerAliyun?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url : jdbc:mysql://120.24.87.70:3306/housemanagerAliyun?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
       username: root
       password : Zhang921230%
-      driverClassName : com.mysql.jdbc.Driver
+      driverClassName : com.mysql.cj.jdbc.Driver
       initialSize: 5
       minIdle: 5
       maxActive: 20
