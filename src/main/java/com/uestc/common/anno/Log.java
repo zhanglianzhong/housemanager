@@ -3,8 +3,8 @@ package com.uestc.common.anno;
 import java.lang.annotation.*;
 
 /**
- * 记录业务日志
- * @author Administrator
+ * 记录业务日志 
+ * @author Zhang Lianzhong
  *
  */
 @Target(ElementType.METHOD)
