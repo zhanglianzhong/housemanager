@@ -1,7 +1,6 @@
 package com.uestc.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.uestc.common.bean.Rest;
 import com.uestc.entity.RoomInfo;
 import com.baomidou.mybatisplus.service.IService;
 

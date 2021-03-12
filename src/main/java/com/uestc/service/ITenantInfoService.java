@@ -1,7 +1,6 @@
 package com.uestc.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.uestc.entity.RoomInfo;
 import com.uestc.entity.TenantInfo;
 import com.baomidou.mybatisplus.service.IService;
 

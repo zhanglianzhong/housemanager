@@ -3,7 +3,6 @@ package com.uestc.service;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.uestc.entity.PropertyInfo;
 import com.baomidou.mybatisplus.service.IService;
-import com.uestc.entity.TenantInfo;
 
 import java.util.Map;
 
